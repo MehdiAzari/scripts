@@ -1,9 +1,9 @@
 #!/bin/bash
-read -p 'Enter Start(including): ' startVar
-read -p 'Enter End(including): ' endVar
+read -p 'Enter Start(including): ' start
+read -p 'Enter End(including): ' end
 logStr="Failed to find these Files:\n"
-echo "from E$startVar to E$endVar"
-for ((i=$startVar; i<=$endVar; i++))
+echo "from E$start to E$end"
+for ((i=$start; i<=$end; i++))
 do
     #Find Movie
     FILE=$(find -name "*$i*.mkv" -o -name "*$i*.mp4" -type f)
@@ -16,9 +16,10 @@ do
             echo "Same video EP$i is already there"
         fi
     else
-        #echo "Video of EP$i does not exist."
         logStr="$logStr E$i vid\t"
     fi
+
+
     #Find Sub
     SUB=$(find -name "*$i*.srt" -o -name "*$i*.ass" -type f)
      if [ -f "$SUB" ]; then
@@ -30,7 +31,6 @@ do
             echo "Same subtitle EP$i is already there"
         fi
     else
-        #echo "Subtitle of EP$i does not exist."
         logStr="$logStr E$i sub\n"
     fi
 done
