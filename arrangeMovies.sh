@@ -10,7 +10,11 @@ do
     if [ -f "$FILE" ]; then
         #echo $FILE
         mkdir -p "/E$i"
-        mv "$FILE" "E$i"
+        if [ -f $FILE ]; then
+            mv "$FILE" "E$i"
+        else
+            echo "Same video EP$i is already there"
+        fi
     else
         #echo "Video of EP$i does not exist."
         logStr="$logStr E$i vid\t"
@@ -20,7 +24,11 @@ do
      if [ -f "$SUB" ]; then
         #echo $SUB
         mkdir -p "/E$i"
-        mv "$SUB" "E$i"
+         if [ -f $SUB ]; then
+            mv "$SUB" "E$i"
+        else
+            echo "Same subtitle EP$i is already there"
+        fi
     else
         #echo "Subtitle of EP$i does not exist."
         logStr="$logStr E$i sub\n"
